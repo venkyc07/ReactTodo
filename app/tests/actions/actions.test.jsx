@@ -47,7 +47,7 @@ describe('Actions', () => {
     const todoText = 'My todo item';
 
     store.dispatch(actions.startAddTodo(todoText)).then(() => {
-      const actions = store.getActions();
+      const action = store.getActions();
       expect(actions[0]).toInclude({
         type: 'ADD_TODO'
       });
@@ -89,13 +89,19 @@ describe('Actions', () => {
     var testTodoRef;
 
     beforeEach((done) => {
-      testTodoRef = firebaseRef.child('todos').push();
+      var  todosRef = firebaseRef.child('todos');
 
-      testTodoRef.set({
-        text: 'spmthing to do',
-        completed: false,
-        completedAt: 214243243
-      }).then(() => done());
+      todosRef.remove().then(() => {
+        testTodoRef = firebaseRef.child('todos').push();
+
+        return testTodoRef.set({
+          text: 'something to do',
+          completed: false,
+          completedAt: 214243243
+        })
+      })
+      .then(() => done())
+      .catch(done);
 
     });
 
@@ -121,7 +127,19 @@ describe('Actions', () => {
 
       }, done);
     });
+    it('should populated todso and dispatch ADD_TODOS', (done) => {
+      const store =createMockStore({});
+      const action = actions.startAddTodo();
+       store.dispatch(action).then(()=> {
+         const mockActions = store.getActions();
 
+         expect(mockActions[0].type).toEqual('ADD_TODOS');
+         expect(mockActions[0].todos.length).toEqual(1);
+         expect(mockActions[0].todos[0].text).toEqual('something to do');
+
+         done();
+       },done);
+    });
   });
 
 });
