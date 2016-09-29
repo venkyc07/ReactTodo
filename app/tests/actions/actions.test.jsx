@@ -47,7 +47,7 @@ describe('Actions', () => {
     const todoText = 'My todo item';
 
     store.dispatch(actions.startAddTodo(todoText)).then(() => {
-      const action = store.getActions();
+      const actions = store.getActions();
       expect(actions[0]).toInclude({
         type: 'ADD_TODO'
       });
@@ -129,7 +129,7 @@ describe('Actions', () => {
     });
     it('should populated todso and dispatch ADD_TODOS', (done) => {
       const store =createMockStore({});
-      const action = actions.startAddTodo();
+      const action = actions.startAddTodos();
        store.dispatch(action).then(()=> {
          const mockActions = store.getActions();
 
