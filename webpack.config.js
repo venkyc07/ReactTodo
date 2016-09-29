@@ -21,7 +21,7 @@ module.exports = {
       compressor: {
         warnings: false
       }
-    })
+    }),
   ],
   output: {
     path: __dirname,

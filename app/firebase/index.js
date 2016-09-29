@@ -2,11 +2,11 @@ import firebase from 'firebase';
 
 try {
   var config = {
-      apiKey: "AIzaSyDu-6YKUH69oZm_e-V1Jnh2qjyZRBs0_OE",
-      authDomain: "penguin-todo-app.firebaseapp.com",
-      databaseURL: "https://penguin-todo-app.firebaseio.com",
-      storageBucket: "penguin-todo-app.appspot.com",
-      messagingSenderId: "567399484214"
+    apiKey: "AIzaSyDEoGqcF5F4_dhUlmU3Q6RPO5pcsdlL4eM",
+        authDomain: "todo-app-4f9f7.firebaseapp.com",
+        databaseURL: "https://todo-app-4f9f7.firebaseio.com",
+        storageBucket: "todo-app-4f9f7.appspot.com",
+        messagingSenderId: "365176219664"
     };
     firebase.initializeApp(config);
 } catch (e) {
